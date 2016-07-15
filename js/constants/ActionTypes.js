@@ -1,0 +1,4 @@
+export default {
+	SWITCH_PLAYER: 'SWITCH_PLAYER',
+	MAKE_MOVE: 'MAKE_MOVE',
+};
