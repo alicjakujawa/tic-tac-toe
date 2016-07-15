@@ -5,7 +5,7 @@ import * as actions from '../../actions/gameActions';
 import { getGame } from '../../reducers/game';
 import Board from '../Board/';
 import { List } from 'immutable';
-import styles from './style.sass'
+import styles from './style.sass';
 
 class Game extends Component {
 

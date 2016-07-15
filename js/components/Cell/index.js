@@ -1,12 +1,12 @@
 import React from 'react';
 import extend from 'object-assign';
 import { List, Map } from 'immutable';
-
+import styles from './style.sass';
 
 export default function Cell(props) {
 
   return (
-    <td
+    <td className="cell"
       onClick={() => console.log("click")}
     >
     </td>

@@ -5,7 +5,7 @@ import { List, Map } from 'immutable';
 const range = [0,1,2];
 
 const Row = (props) => (
-  <tr className="board__row">
+  <tr className="row">
     {range.map(c =>
       <Cell row={props.row}
             col={c}
