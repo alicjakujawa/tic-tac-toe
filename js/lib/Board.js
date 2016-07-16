@@ -36,5 +36,6 @@ export default {
   newGameBoard,
   makeMove,
   makeVirtualMove,
-  getScore
+  getScore,
+  getStatus
 };
