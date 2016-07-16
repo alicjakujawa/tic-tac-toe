@@ -1,7 +1,8 @@
-import { SWITCH_PLAYER, MAKE_MOVE } from '../constants/ActionTypes';
+import actionTypes from '../constants/ActionTypes';
 
 import { default as Board } from '../lib/Board';
 import Player from '../lib/Player';
+import isEndOfGame from '../lib/isEndOfGame';
 
 function newGame() {
   return {
@@ -24,13 +25,13 @@ function switchPlayer(state) {
 function makeMove(state, action) {
 
    const newBoard = state.currentPlayer === Player.Computer ?
-    Board.makeVirtualMove(state.board, action.row, action.col, state.currentPlayer) :
+    Board.makeVirtualMove(state.board, state.currentPlayer) :
     Board.makeMove(state.board, action.row, action.col, state.currentPlayer);
 
    if (newBoard !== state.board) {
       const score = Board.getScore(newBoard);
 
-      if (!isEndOfGame(score.player1, score.player2)) {
+      if (!isEndOfGame(score.player1, score.computer)) {
          const nextPlayer = state.currentPlayer === Player.One
             ? Player.Computer
             : Player.One;
@@ -53,7 +54,8 @@ function makeMove(state, action) {
 
 export default function game(state = newGame(), action) {
   const handlers = {
-
+    [actionTypes.SWITCH_PLAYER]: switchPlayer,
+    [actionTypes.MAKE_MOVE]: makeMove
   };
 
   return handlers[action.type]
@@ -62,7 +64,8 @@ export default function game(state = newGame(), action) {
 }
 
 export function getGame(state) {
-  const { board }  = state.game;
+  const game  = state.game;
+  const score = Board.getScore(game.board);
 
-  return { board }
+  return { ...game, score }
 }

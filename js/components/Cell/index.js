@@ -7,7 +7,7 @@ export default function Cell(props) {
 
   return (
     <td className="cell"
-      onClick={() => console.log("click")}
+      onClick={() => props.actions.makeMove(props.row, props.col)}
     >
     </td>
   );

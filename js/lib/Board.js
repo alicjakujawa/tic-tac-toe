@@ -1,4 +1,5 @@
 import { List } from 'immutable';
+import Player from '../lib/Player';
 
 const newGameBoard = List(
  [0, 0, 0,
@@ -7,15 +8,20 @@ const newGameBoard = List(
 ]);
 
 function makeMove(board, i, j, player) {
-  console.log("get move")
+  if (getStatus(board, i, j) !== Player.None) return board;
+  const newBoard = setCell(board, i, j, player);
+  return newBoard;
 }
 
-function makeVirtualMove(board, i, j, player) {
+function makeVirtualMove(board, player) {
   console.log("get virtual move")
 }
 
 function getScore(board) {
-  console.log("get score")
+  return {
+    player: board.count(cell => cell === Player.One),
+    computer: board.count(cell => cell === Player.Computer)
+  };
 }
 
 function getStatus(board, i, j) {

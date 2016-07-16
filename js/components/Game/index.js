@@ -10,7 +10,6 @@ import styles from './style.sass';
 class Game extends Component {
 
   componentDidMount() {
-    console.log(this.props)
   }
 
   render() {
